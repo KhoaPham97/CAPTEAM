@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<WebApplication.Models.task>
 
 <!DOCTYPE html>
 <html>
@@ -408,6 +409,18 @@
                             <li class="active"><a href="/Home/Index"><i class="fa fa-circle-o"></i> Overview</a></li>
 
                         </ul>
+                        <ul class="treeview-menu">
+                            <li class="active"><a href="/Plans/Index"><i class="fa fa-circle-o"></i> Plan</a></li>
+
+                        </ul>
+                        <ul class="treeview-menu">
+                            <li class="active"><a href="/Buckets/Index"><i class="fa fa-circle-o"></i> Bucket</a></li>
+
+                        </ul>
+                        <ul class="treeview-menu">
+                            <li class="active"><a href="/tasks/Index"><i class="fa fa-circle-o"></i> Task</a></li>
+
+                        </ul>
                     </li>
 
                     <li class="treeview">
@@ -418,7 +431,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="/Home/Newtask" i class="fa fa-plus"></i> New Task</a></li>
+                            <li><a href="/Home/Newtask"> <i class="fa fa-plus"></i> New Task</a></li>
 
                         </ul>
                     </li>
@@ -546,50 +559,31 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- /.box-header -->
+                           <!-- /.box-header -->
                                 <div class="box-body table-responsive no-padding" style="text-align:center">
                                     <table class="table table-hover">
                                         <tr>
                                             <th style="text-align:center">ID</th>
                                             <th style="text-align:center">Task</th>
                                             <th style="text-align:center">Assigned</th>
-                                            <th style="text-align:center">Date</th>
+                                            <th style="text-align:center">Start Date</th>
+                                            <th style="text-align:center">Due Date</th>
                                             <th style="text-align:center">Status</th>
                                             <th style="text-align:center">Description</th>
                                         </tr>
+@foreach (var item in Model)
+{
+
                                         <tr>
-                                            <td>P0101</td>
-                                            <td>P0101-Thiết kế sơ lược cấu trúc trang web (6h) - Khoa </td>
-                                            <td>Khoa Pham</td>
-                                            <td>11-09-2018</td>
-                                            <td><span class="label label-success">Approved</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                            <td>@item.TaskID</td>
+                                            <td>@item.Title</td>
+                                            <td>@item.AspNetUser.UserName</td>
+                                            <td>@item.Startdate</td>
+                                            <td>@item.Duedate</td>
+                                            <td><span class="label label-success">@item.Status.StatusName</span></td>
+                                            <td>@item.Description</td>
                                         </tr>
-                                        <tr>
-                                            <td>219</td>
-                                            <td>Lập trình</td>
-                                            <td>Alexander Pierce</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="label label-warning">Pending</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>657</td>
-                                            <td>Lập trình</td>
-                                            <td>Bob Doe</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="label label-primary">Approved</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>175</td>
-                                            <td>Lập trình</td>
-                                            <td>Mike Doe</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="label label-danger">Denied</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                        </tr>
+                              }
                                     </table>
                                 </div>
 
@@ -598,7 +592,7 @@
                             <!-- /.box -->
                         </div>
                     </div>
-
+                </div>
                     <!-- /.row (main row) -->
 
             </section>
